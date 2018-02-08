@@ -17,15 +17,30 @@ def return_definition(word):
     error_tolerance = 0.7
     if word in data:
         return data[word]
+    elif word.title() in data:
+        return data[word.title()]
+    elif word.upper() in data:
+        return data[word.upper()]
     elif len(gcm(word,data.keys(),cutoff = error_tolerance))!=0:
         #Asking the user if he had made a typo and finding the closest match to it.
         #print("Did u mean {0}?Enter Y(yes) or N(no).".format(gcm(word,data.keys(),cutoff = 0.8)[0]))
-        if input("Did u mean {0}?Enter Y(yes) or N(no).".format(gcm(word,data.keys(),cutoff = error_tolerance)[0])):
+        reply = input("Did u mean {0}?Enter Y(yes) or N(no).".format(gcm(word,data.keys(),cutoff = error_tolerance)[0]))
+        if reply == 'Y':
             return data[gcm(word,data.keys(),cutoff = error_tolerance)[0]]
+        elif reply == 'N':
+            return "The word doesn't exist. PLease check again."
+        else:
+            return "Didn't understand your entry."
     else:
         return ["The word doesn't exist. Please check again."]
 
 #taking user's input
 word = input("Enter a Word to search in the Dictionary: ")
 
-print(return_definition(word))
+definitions = return_definition(word)
+
+if type(definitions) == list:
+    for item in definitions:
+        print(item)
+else:
+    print(definitions)
