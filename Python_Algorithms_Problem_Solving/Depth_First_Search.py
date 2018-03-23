@@ -13,12 +13,12 @@ class Depth_First_Search:
     def dfsuntil(self,v,visited):
         visited[v]  = True
         print(v,end=" ")
-        print()
+        #print()
         for i in self.graph[v]:
             if visited[i] == False:
-                print(i)
-                print(visited)
-                input()
+                #print(i)
+                #print(visited)
+                #input()
                 self.dfsuntil(i,visited)
     def DFS(self,v):
         visited = [False]*len(set(self.points))

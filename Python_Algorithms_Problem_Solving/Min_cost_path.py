@@ -14,7 +14,7 @@ def mincost(cost,m,n):
     else:
         return cost[m][n] + min(mincost(cost,m-1,n-1),mincost(cost,m,n-1),mincost(cost,m-1,n))
 
-cost= [ [1, 2, 3],
-        [4, 1, 2],
-        [1, 5, 3] ]
+cost= [ [2, 2, 1],
+        [1, 3, 1],
+        [1, 1, 1] ]
 print(mincost(cost,2,2))

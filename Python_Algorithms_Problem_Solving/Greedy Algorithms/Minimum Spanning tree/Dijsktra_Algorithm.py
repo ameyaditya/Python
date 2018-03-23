@@ -37,4 +37,4 @@ g.graph = [[0, 4, 0, 0, 0, 0, 0, 8, 0],
            [8, 11, 0, 0, 0, 0, 1, 0, 7],
            [0, 0, 2, 0, 0, 0, 6, 7, 0]
           ]
-g.Dijsktras_algorithm(0)
+g.Dijsktras_algorithm(3)
