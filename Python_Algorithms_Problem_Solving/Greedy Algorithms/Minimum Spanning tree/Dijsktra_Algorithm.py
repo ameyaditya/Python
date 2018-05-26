@@ -1,5 +1,5 @@
 import sys
-
+from collections import defaultdict
 class Graph:
     def __init__(self,V):
         self.V = V
@@ -12,6 +12,7 @@ class Graph:
                 min_index = loop
         return min_index
     def Dijsktras_algorithm(self,src):
+         parent = defaultdict(list)
          keys = [float("inf")]*self.V
          keys[src] = 0
          setmst = [False]*self.V
@@ -23,18 +24,21 @@ class Graph:
              for v in range(self.V):
                  if self.graph[u][v] > 0 and setmst[v] == False and keys[v] > keys[u]+self.graph[u][v]:
                      keys[v] = keys[u]+self.graph[u][v]
+                     parent[v].append(u)
+                     parent[u].append(v)
          for iter in range(self.V):
              print(iter," ",keys[iter])
+             print(parent[iter])
 
 g  = Graph(9)
-g.graph = [[0, 4, 0, 0, 0, 0, 0, 8, 0],
-           [4, 0, 8, 0, 0, 0, 0, 11, 0],
-           [0, 8, 0, 7, 0, 4, 0, 0, 2],
-           [0, 0, 7, 0, 9, 14, 0, 0, 0],
-           [0, 0, 0, 9, 0, 10, 0, 0, 0],
-           [0, 0, 4, 14, 10, 0, 2, 0, 0],
-           [0, 0, 0, 0, 0, 2, 0, 1, 6],
-           [8, 11, 0, 0, 0, 0, 1, 0, 7],
-           [0, 0, 2, 0, 0, 0, 6, 7, 0]
+g.graph = [[0, 1, 0, 0, 0, 0, 0, 1, 0],
+           [1, 0, 1, 0, 0, 0, 0, 1, 0],
+           [0, 1, 0, 1, 0, 1, 0, 0, 1],
+           [0, 0, 1, 0, 1, 1, 0, 0, 0],
+           [0, 0, 0, 1, 0, 1, 0, 0, 0],
+           [0, 0, 1, 1, 1, 0, 1, 0, 0],
+           [0, 0, 0, 0, 0, 1, 0, 1, 1],
+           [8, 1, 0, 0, 0, 0, 1, 0, 1],
+           [0, 0, 1, 0, 0, 0, 1, 1, 0]
           ]
 g.Dijsktras_algorithm(3)
